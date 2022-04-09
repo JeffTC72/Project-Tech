@@ -1,0 +1,25 @@
+
+
+<h2>Edit a Game</h2>
+<section>
+    <form method="post" action="/profile/edit-game/{{ card._id }}">
+        <section>
+            <label for="Characters">3 Favorite Characters:</label>
+            <input name="char1" type="text" value="{{card.character1}}">
+            <input name="char2" type="text" value="{{card.character2}}">
+            <input name="char3" type="text" value="{{card.character3}}">
+        </section>
+        <section>
+            <label for="Hours Played">Hours Played:</label>
+            <input name="hoursplayed" type="text" value="{{card.hoursplayed}}">
+            <label for="Rank">Rank:</label>
+            <input name="rank" type="text" value="{{card.rank}}">
+        </section>
+        <input class="submitbtn" type="submit" value="Submit">
+    </form>
+</section>
+<section>
+        <form action="/profile/delete-game/{{ card._id }}" method="post">
+            <input class="deletebtn" type="submit" value="Delete this card">
+        </form>
+</section>

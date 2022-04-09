@@ -1,0 +1,41 @@
+
+<section class="profileheader">
+    <img src="/public/images/bg-texture.jpg" alt="">
+</section>
+
+<section class="profileinfo">
+    <span>
+        <img src="/public/images/pfp-placeholder.jpg" alt="">
+        <h1>{{ this.user }}</h1>
+    </span>
+</section>
+
+<section class="gamelist">
+    <h3>My games:</h3>
+
+    <ul>
+    {{#each card}}
+        <li class="{{ this.game }}">
+            <h3>{{ this.game }}</h3>
+
+            <img src="/public/images/pfp-placeholder.jpg" alt="">
+                
+            <span>
+                <p>{{this.character1}}</p>
+                <p>{{this.character2}}</p>
+                <p>{{this.character3}}</p>
+            </span>
+
+            <article>
+                <h4>{{this.hoursplayed}}</h4>
+                <h4>{{this.rank}}</h4>
+
+            </article>
+
+        </li>
+    {{ else }}
+    <p>You currently have no games... Click '+' to start adding games</p>
+    {{/each}}
+    </ul>
+    <a href="profile/add-game">+</a>
+</section>

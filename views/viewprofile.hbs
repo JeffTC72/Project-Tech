@@ -1,0 +1,20 @@
+<h1>{{this.user}}</h1>
+<ul>
+    {{#each card}}
+        <li>
+            <section class="{{this.game}}">
+                <h3>{{this.game}}</h3>
+                
+                <section>
+                    <p>{{this.character1}}</p>
+                    <p>{{this.character2}}</p>
+                    <p>{{this.character3}}</p>
+                </section>
+
+                <h4>{{this.hoursplayed}}</h4>
+                <h4>{{this.rank}}</h4>
+
+            </section>
+        </li>
+    {{/each}}
+</ul>
