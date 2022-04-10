@@ -11,31 +11,35 @@
 </section>
 
 <section class="gamelist">
-    <h3>My games:</h3>
+    <h2>My games:</h2>
 
     <ul>
     {{#each card}}
         <li class="{{ this.game }}">
             <h3>{{ this.game }}</h3>
 
-            <img src="/public/images/pfp-placeholder.jpg" alt="">
+            <img src="/public/images/{{ this.game }}.jpg" alt="">
                 
             <span>
-                <p>{{this.character1}}</p>
-                <p>{{this.character2}}</p>
-                <p>{{this.character3}}</p>
+                <img src="{{ character1.img }}" alt="{{ character1.character }}">
+                <img src="{{ character2.img }}" alt="{{ character2.character }}">
+                <img src="{{ character3.img }}" alt="{{ character3.character }}">
             </span>
 
             <article>
+                <p>Total hours:</p>
                 <h4>{{this.hoursplayed}}</h4>
+                <p>Rank:</p>
                 <h4>{{this.rank}}</h4>
-
+                <a href="profile/edit-game/{{ this._id }}"><img src="/public/images/pencil.png" alt=""></a>
             </article>
 
         </li>
     {{ else }}
-    <p>You currently have no games... Click '+' to start adding games</p>
+        <li class="nogame">
+            <p>You currently have no games... Click '+' to start adding games</p>
+        </li>
     {{/each}}
     </ul>
-    <a href="profile/add-game">+</a>
+    <a href="profile/add-game"><img src="/public/images/plus.png" alt=""></a>
 </section>

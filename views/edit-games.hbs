@@ -1,25 +1,59 @@
-
-
-<h2>Edit a Game</h2>
-<section>
-    <form method="post" action="/profile/edit-game/{{ card._id }}">
-        <section>
-            <label for="Characters">3 Favorite Characters:</label>
-            <input name="char1" type="text" value="{{card.character1}}">
-            <input name="char2" type="text" value="{{card.character2}}">
-            <input name="char3" type="text" value="{{card.character3}}">
-        </section>
-        <section>
-            <label for="Hours Played">Hours Played:</label>
-            <input name="hoursplayed" type="text" value="{{card.hoursplayed}}">
-            <label for="Rank">Rank:</label>
-            <input name="rank" type="text" value="{{card.rank}}">
-        </section>
-        <input class="submitbtn" type="submit" value="Submit">
-    </form>
+<section class="formheader">
+    <h1>Edit a Game</h1>
 </section>
-<section>
+
+<form method="post" class="gameform" action="/profile/edit-game/{{ card._id }}">
+    
+    <h2>Selected game:</h2>
+    <section class="editgames">
+        <img src="/public/images/{{ card.game }}.jpg" alt="{{ card.game }}">
+        <h3 id="gamecheck" class="{{ card.game }}">{{ card.game }}</h3>
+    </section>
+
+    <h3>Your 3 favorite characters:</h3>
+    <section class="formchars">
+
+        <select name="char1" id="char1">
+            <option value="{{cardchar1.character}}">{{cardchar1.character}}</option>
+            {{#each chars}}
+            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            {{/each}}
+        </select>
+
+        <select name="char2" id="char2">
+            <option value="{{cardchar2.character}}">{{cardchar2.character}}</option>
+            {{#each chars}}
+            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            {{/each}}
+        </select>
+
+        <select name="char3" id="char3">
+            <option value="{{cardchar3.character}}">{{cardchar3.character}}</option>
+            {{#each chars}}
+            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            {{/each}}
+        </select>
+
+    </section>
+
+    <h3>Your level:</h3>
+    <section class="formdata">
+        <label for="hours played" id="rank">Hours Played:</label>
+        <label for="rank" id="rank">Rank:</label>
+        <input name="hoursplayed" type="text" value="{{ card.hoursplayed }}">
+        <input name="rank" type="text" value="{{ card.rank }}">
+    </section>
+    <section class="formbtn">
+        <a href="/profile">Cancel</a>
+        <input class="submitbtn" type="submit" value="Submit">
+    </section>
+    
+</form>
+
+<section class="formdelete">
         <form action="/profile/delete-game/{{ card._id }}" method="post">
             <input class="deletebtn" type="submit" value="Delete this card">
         </form>
 </section>
+
+<script src="/public/js/edit.js"></script>

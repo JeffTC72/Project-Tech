@@ -1,22 +1,59 @@
+<section class="formheader">
+    <h1>Add a Game</h1>
+</section>
+
+<form method="post" class="gameform" action="/profile/add-game">
+    
+
+    <h2>Select a game:</h2>
+    <section class="formgames">
+        <input type="radio" id="overwatch" name="game" value="Overwatch">
+        <label for="overwatch"><img src="/public/images/Overwatch.jpg" alt=""></label>
+        <input type="radio" id="valorant" name="game" value="Valorant">
+        <label for="valorant"><img src="/public/images/Valorant.jpg" alt=""></label>
+        <input type="radio" id="apex" name="game" value="Apex Legends">
+        <label for="apex"><img src="/public/images/Apex Legends.jpg" alt=""></label>
+    </section>
 
 
-<h2>Add a Game</h2>
-<form method="post" action="/profile/add-game">
-    <section>
-        <label for="Game">Game:</label>
-        <input name="game" type="text">
+    <h3>Your 3 favorite characters:</h3>
+    <section class="formchars">
+
+        <select name="char1" id="char1">
+            <option value="">--select--</option>
+            {{#each chars}}
+            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            {{/each}}
+        </select>
+
+        <select name="char2" id="char2">
+            <option value="">--select--</option>
+            {{#each chars}}
+            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            {{/each}}
+        </select>
+
+        <select name="char3" id="char3">
+            <option value="">--select--</option>
+            {{#each chars}}
+            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            {{/each}}
+        </select>
+
     </section>
-    <section>
-        <label for="Characters">3 Favorite Characters:</label>
-        <input name="char1" type="text">
-        <input name="char2" type="text">
-        <input name="char3" type="text">
-    </section>
-    <section>
-        <label for="Hours Played">Hours Played:</label>
+
+    <h3>Your level:</h3>
+    <section class="formdata">
+        <label for="hours played" id="rank">Hours Played:</label>
+        <label for="rank" id="rank">Rank:</label>
         <input name="hoursplayed" type="text">
-        <label for="Rank">Rank:</label>
         <input name="rank" type="text">
     </section>
-    <input class="submitbtn" type="submit" value="Submit">
+    <section class="formbtn">
+        <a href="/profile">Cancel</a>
+        <input class="submitbtn" type="submit" value="Submit">
+    </section>
+    
 </form>
+
+<script src="/public/js/add.js"></script>

@@ -61,7 +61,7 @@ app.get('/profile', async (req, res) => {
         title: "My Profile"
     };
 
-    const card = await Card.find({}).lean();
+    const card = await Card.find({}).populate("character1 character2 character3").lean();
 
     res.status(200).render('profile', {
         page: page,
@@ -77,9 +77,9 @@ app.get('/viewprofile', async (req, res) => {
         title: `${user}'s Profile`
     };
 
-    const card = await Card.find({}).lean();
+    const card = await Card.find({}).populate("character1 character2 character3").lean();
 
-    res.status(200).render('profile', {
+    res.status(200).render('viewprofile', {
         page: page,
         user: user,
         card: card,
@@ -88,13 +88,16 @@ app.get('/viewprofile', async (req, res) => {
 
 
 // Add game card
-app.get('/profile/add-game', (req, res) => {
+app.get('/profile/add-game', async(req, res) => {
     const page = {
         title: "New Game"
     };
 
+    const chars = await Game.find({}).lean();
+
     res.status(200).render('add-games', {
         page: page,
+        chars:chars,
     });
 });
 
@@ -128,12 +131,17 @@ app.get('/profile/edit-game/:id', async(req, res) => {
 		title: "Edit Game"
 	};
 	
-	const card = await Card.findById(req.params.id).lean();
+	const card = await Card.findById(req.params.id).populate("character1 character2 character3").lean();
+    const chars = await Game.find({}).lean();
 	
 	// console.log(user);
 	res.status(200).render('edit-games', { 
 		page: page,
 		card: card,
+        chars: chars,
+        cardchar1: card.character1,
+        cardchar2: card.character2,
+        cardchar3: card.character3,
 	});
 });
 
@@ -163,7 +171,3 @@ app.post('/profile/delete-game/:id', async(req,res) => {
 app.listen(PORT, () => {
     console.log('server started')
 });
-
-//********//
-//**DUMP**//
-//********//
