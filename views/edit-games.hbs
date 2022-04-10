@@ -14,23 +14,23 @@
     <section class="formchars">
 
         <select name="char1" id="char1">
-            <option value="{{cardchar1.character}}">{{cardchar1.character}}</option>
+            <option value="{{ card.character1 }}">{{ card.character1 }}</option>
             {{#each chars}}
-            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            <option class="{{ this.game }}" value="{{ this.character }}">{{ this.character }}</option>
             {{/each}}
         </select>
 
         <select name="char2" id="char2">
-            <option value="{{cardchar2.character}}">{{cardchar2.character}}</option>
+            <option value="{{ card.character2 }}">{{ card.character2 }}</option>
             {{#each chars}}
-            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            <option class="{{ this.game }}" value="{{ this.character }}">{{ this.character }}</option>
             {{/each}}
         </select>
 
         <select name="char3" id="char3">
-            <option value="{{cardchar3.character}}">{{cardchar3.character}}</option>
+            <option value="{{ card.character3 }}">{{ card.character3 }}</option>
             {{#each chars}}
-            <option class="{{this.game}}" value="{{ this._id }}">{{ this.character }}</option>
+            <option class="{{ this.game }}" value="{{ this.character }}">{{ this.character }}</option>
             {{/each}}
         </select>
 

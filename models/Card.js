@@ -4,9 +4,12 @@ const Schema = mongoose.Schema;
 
 const CardSchema = new Schema({
     game: String,
-    character1: { type: Schema.Types.ObjectId, ref: 'Game' },
-    character2: { type: Schema.Types.ObjectId, ref: 'Game' },
-    character3: { type: Schema.Types.ObjectId, ref: 'Game' },
+    character1: String,
+    character2: String,
+    character3: String,
+    character1img: String,
+    character2img: String,
+    character3img: String,
     rank: String,
     hoursplayed: String,
 });
