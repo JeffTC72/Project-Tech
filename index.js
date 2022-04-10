@@ -14,8 +14,6 @@ db();
 
 
 // Models
-// let User = require('./models/User');
-let Game = require('./models/Game');
 let Card = require('./models/Card');
 
 
