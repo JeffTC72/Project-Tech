@@ -115,19 +115,12 @@ app.post('/profile/add-game', async(req, res) => {
     chars.forEach(element => {
         if(element.character == input.char1){
             char1img = element.img
-            
         }
-    });
-    chars.forEach(element => {
         if(element.character == input.char2){
             char2img = element.img
-            
         }
-    });
-    chars.forEach(element => {
         if(element.character == input.char3){
             char3img = element.img
-            
         }
     });
     
@@ -188,19 +181,12 @@ app.post('/profile/edit-game/:id', async(req, res) => {
     chars.forEach(element => {
         if(element.character == input.char1){
             char1img = element.img
-            
         }
-    });
-    chars.forEach(element => {
         if(element.character == input.char2){
             char2img = element.img
-            
         }
-    });
-    chars.forEach(element => {
         if(element.character == input.char3){
             char3img = element.img
-            
         }
     });
     await Card.findByIdAndUpdate(req.params.id, {
