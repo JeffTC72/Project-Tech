@@ -11,7 +11,7 @@
 </section>
 
 <section class="gamelist">
-    <h3>{{ this.user}}'s games:</h3>
+    <h3>{{ this.user }}'s games:</h3>
 
     <ul>
     {{#each card}}
@@ -21,16 +21,16 @@
             <img src="/public/images/{{ this.game }}.jpg" alt="">
                 
             <span>
-                <p>{{character1.name}}</p>
-                <p>{{this.character2}}</p>
-                <p>{{this.character3}}</p>
+                <img src="{{ this.character1img }}" alt="{{ this.character1 }}">
+                <img src="{{ this.character2img }}" alt="{{ this.character2 }}">
+                <img src="{{ this.character3img }}" alt="{{ this.character3 }}">
             </span>
 
             <article>
                 <p>Total hours:</p>
-                <h4>{{this.hoursplayed}}</h4>
+                <h4>{{ this.hoursplayed }}</h4>
                 <p>Rank:</p>
-                <h4>{{this.rank}}</h4>
+                <h4>{{ this.rank }}</h4>
             </article>
 
         </li>

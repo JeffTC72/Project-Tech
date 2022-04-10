@@ -21,16 +21,16 @@
             <img src="/public/images/{{ this.game }}.jpg" alt="">
                 
             <span>
-                <img src="{{ character1.img }}" alt="{{ character1.character }}">
-                <img src="{{ character2.img }}" alt="{{ character2.character }}">
-                <img src="{{ character3.img }}" alt="{{ character3.character }}">
+                <img src="{{ this.character1img }}" alt="{{ this.character1 }}">
+                <img src="{{ this.character2img }}" alt="{{ this.character2 }}">
+                <img src="{{ this.character3img }}" alt="{{ this.character3 }}">
             </span>
 
             <article>
                 <p>Total hours:</p>
-                <h4>{{this.hoursplayed}}</h4>
+                <h4>{{ this.hoursplayed }}</h4>
                 <p>Rank:</p>
-                <h4>{{this.rank}}</h4>
+                <h4>{{ this.rank }}</h4>
                 <a href="profile/edit-game/{{ this._id }}"><img src="/public/images/pencil.png" alt=""></a>
             </article>
 

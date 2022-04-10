@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 
 
@@ -61,7 +62,7 @@ app.get('/profile', async (req, res) => {
         title: "My Profile"
     };
 
-    const card = await Card.find({}).populate("character1 character2 character3").lean();
+    const card = await Card.find({}).lean();
 
     res.status(200).render('profile', {
         page: page,
@@ -77,7 +78,7 @@ app.get('/viewprofile', async (req, res) => {
         title: `${user}'s Profile`
     };
 
-    const card = await Card.find({}).populate("character1 character2 character3").lean();
+    const card = await Card.find({}).lean();
 
     res.status(200).render('viewprofile', {
         page: page,
@@ -93,21 +94,53 @@ app.get('/profile/add-game', async(req, res) => {
         title: "New Game"
     };
 
-    const chars = await Game.find({}).lean();
+    const api_url = `https://jefftc72.github.io/Data/games.json`;
+    const response = await fetch(api_url);
+    const chars = await response.json();
 
     res.status(200).render('add-games', {
         page: page,
-        chars:chars,
+        chars: chars,
     });
 });
 
-app.post('/profile/add-game', (req, res) => {
+app.post('/profile/add-game', async(req, res) => {
+    const api_url = `https://jefftc72.github.io/Data/games.json`;
+    const response = await fetch(api_url);
+    const chars = await response.json();
+    
     const input = req.body;
+    let char1img;
+    let char2img;
+    let char3img;
+
+    chars.forEach(element => {
+        if(element.character == input.char1){
+            char1img = element.img
+            
+        }
+    });
+    chars.forEach(element => {
+        if(element.character == input.char2){
+            char2img = element.img
+            
+        }
+    });
+    chars.forEach(element => {
+        if(element.character == input.char3){
+            char3img = element.img
+            
+        }
+    });
+    
     const form = {
         game: input.game,
         character1: input.char1,
         character2: input.char2,
         character3: input.char3,
+        character1img: char1img,
+        character2img: char2img,
+        character3img: char3img,
         rank: input.rank,
         hoursplayed: input.hoursplayed,
     };
@@ -132,31 +165,56 @@ app.get('/profile/edit-game/:id', async(req, res) => {
 	};
 	
 	const card = await Card.findById(req.params.id).populate("character1 character2 character3").lean();
-    const chars = await Game.find({}).lean();
+    const api_url = `https://jefftc72.github.io/Data/games.json`;
+    const response = await fetch(api_url);
+    const chars = await response.json();
 	
 	// console.log(user);
 	res.status(200).render('edit-games', { 
 		page: page,
 		card: card,
         chars: chars,
-        cardchar1: card.character1,
-        cardchar2: card.character2,
-        cardchar3: card.character3,
 	});
 });
 
 app.post('/profile/edit-game/:id', async(req, res) => {
+    const api_url = `https://jefftc72.github.io/Data/games.json`;
+    const response = await fetch(api_url);
+    const chars = await response.json();
+    
     const input = req.body;
+    let char1img;
+    let char2img;
+    let char3img;
 
+    chars.forEach(element => {
+        if(element.character == input.char1){
+            char1img = element.img
+            
+        }
+    });
+    chars.forEach(element => {
+        if(element.character == input.char2){
+            char2img = element.img
+            
+        }
+    });
+    chars.forEach(element => {
+        if(element.character == input.char3){
+            char3img = element.img
+            
+        }
+    });
     await Card.findByIdAndUpdate(req.params.id, {
         character1: input.char1,
         character2: input.char2,
         character3: input.char3,
+        character1img: char1img,
+        character2img: char2img,
+        character3img: char3img,
         rank: input.rank,
         hoursplayed: input.hoursplayed,
     }).exec();
-
-    console.log(input.char3);
 
     res.redirect('/profile')
 });
