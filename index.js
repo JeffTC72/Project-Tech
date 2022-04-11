@@ -4,7 +4,6 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const fetch = require('node-fetch');
-const mongoose = require('mongoose');
 
 
 // Connecting DB
@@ -36,10 +35,10 @@ app.set("views", "./views");
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
+
 //**********//
 // **PAGES**//
 //**********//
-
 
 // Feature menu
 app.get('/', (req, res) => {
